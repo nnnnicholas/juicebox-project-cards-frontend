@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import MintModule from "../components/MintModule";
 
 interface NavigationItem {
   name: string;
@@ -88,12 +89,12 @@ const Home: NextPage = () => {
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Juicebox</span>
                 <Image
-                className="h-8 w-auto"
-                src="/juicebox-black.png"
-                alt="juicebox logo"
-                width={54}
-                height={72}
-              />
+                  className="h-8 w-auto"
+                  src="/juicebox-black.png"
+                  alt="juicebox logo"
+                  width={54}
+                  height={72}
+                />
               </a>
               <button
                 type="button"
@@ -160,9 +161,10 @@ const Home: NextPage = () => {
               Juicebox Project Cards
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-            Track your favorite Juicebox Projects inside your wallet.
+              Track your favorite Juicebox Projects inside your wallet.
             </p>
-            <div className="mt-10 flex items-center gap-x-6">
+            <MintModule className="mt-20"/>
+            {/* <div className="mt-10 flex items-center gap-x-6">
               <a
                 href="#mint"
                 className="rounded-md bg-amber-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -175,7 +177,7 @@ const Home: NextPage = () => {
               >
                 Learn more <span aria-hidden="true">→</span>
               </a>
-            </div>
+            </div> */}
           </div>
           <div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
             <Image
