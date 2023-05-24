@@ -4,25 +4,21 @@ import Image from "next/image";
 import Head from "next/head";
 import { CheckIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Combobox } from "@headlessui/react";
-import _ from "lodash";
+import {debounce} from "lodash";
+import { Project } from '../interfaces/Project';
 
-interface Project {
-  id: string;
-  name: string;
-  [key: string]: any; // Additional properties not listed here
+
+interface SearchProps {
+  selectedProject: Project | null;
+  setSelectedProject: (project: Project | null) => void;
 }
 
 function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Search: FC = () => {
+const Search: FC<SearchProps> = ({ selectedProject, setSelectedProject }) => {
   const [query, setQuery] = useState("");
-  // const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [selectedProject, setSelectedProject] = useState<Project | null>({
-    id: "1",
-    name: "Juicebox",
-  });
 
   const [projects, setProjects] = useState<Project[]>([]);
 
@@ -41,7 +37,7 @@ const Search: FC = () => {
     };
 
     if (query !== "") {
-      const debouncedFetch = _.debounce(fetchProjects, 250);
+      const debouncedFetch = debounce(fetchProjects, 250);
       debouncedFetch();
     } else {
       setProjects([]);
