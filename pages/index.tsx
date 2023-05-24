@@ -14,8 +14,8 @@ interface NavigationItem {
 }
 
 const navigation: NavigationItem[] = [
-  { name: "Features", href: "#features-section" },
-  { name: "Mint", href: "#mint-section" },
+  { name: "Features", href: "#features" },
+  { name: "Mint", href: "#mint" },
 ];
 
 const Home: NextPage = () => {
@@ -86,12 +86,14 @@ const Home: NextPage = () => {
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt=""
-                />
+                <span className="sr-only">Juicebox</span>
+                <Image
+                className="h-8 w-auto"
+                src="/juicebox-black.png"
+                alt="juicebox logo"
+                width={54}
+                height={72}
+              />
               </a>
               <button
                 type="button"
@@ -103,7 +105,7 @@ const Home: NextPage = () => {
               </button>
             </div>
             <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="-my-6  divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
                     <a
@@ -115,14 +117,7 @@ const Home: NextPage = () => {
                     </a>
                   ))}
                 </div>
-                <div className="py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Log in
-                  </a>
-                </div>
+                <ConnectButton accountStatus="address" />
               </div>
             </div>
           </Dialog.Panel>
@@ -165,18 +160,17 @@ const Home: NextPage = () => {
               Juicebox Project Cards
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Keep track of your favorite Juicebox Projects right inside your
-              wallet.
+            Track your favorite Juicebox Projects inside your wallet.
             </p>
             <div className="mt-10 flex items-center gap-x-6">
               <a
-                href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                href="#mint"
+                className="rounded-md bg-amber-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Mint a Project Card
               </a>
               <a
-                href="#"
+                href="#features"
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
                 Learn more <span aria-hidden="true">→</span>
