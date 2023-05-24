@@ -1,29 +1,10 @@
-This is a [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
+# Juicebox Project Cards Frontend
 
-## Getting Started
+A frontend for the [Juicebox Project Cards contract](https://github.com/nnnnicholas/juicebox-project-cards):
 
-First, run the development server:
+> Juicebox Project Cards are a fun way to keep track of the health of your favorite Juicebox projects, right inside your own wallet! Project Cards are ERC-1155 NFT editions. Each project card corresponds to a specific project on the Juicebox Protocol. Project Cards display the same metadata as the canonical Juicebox Project NFT. Project cards display up-to-date treasury statistics for the corresponding project. If project owners customize their project metadata, the project cards will automatically update accordingly.
 
-```bash
-npm run dev
-```
+## Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about this stack, take a look at the following resources:
-
-- [RainbowKit Documentation](https://rainbowkit.com) - Learn how to customize your wallet connection flow.
-- [wagmi Documentation](https://wagmi.sh) - Learn how to interact with Ethereum.
-- [Next.js Documentation](https://nextjs.org/docs) - Learn how to build a Next.js application.
-
-You can check out [the RainbowKit GitHub repository](https://github.com/rainbow-me/rainbowkit) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. `pnpm i`
+2. `pnpm dev`
