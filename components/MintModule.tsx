@@ -1,5 +1,5 @@
-import type { NextPage} from "next";
-import {FC} from "react";
+import type { NextPage } from "next";
+import { FC } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import { useState } from "react";
@@ -13,12 +13,19 @@ type MintModuleProps = {
 const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
   return (
     <div className={`${className}`}>
-      <h1>Mint a Project Card</h1>
-      <div className="text-gray-400">Choose any Juicebox project.</div>
+      <h2>Mint a Project Card</h2>
+      <div className="text-gray-400 mt-2">Choose any Juicebox project.</div>
       <Search />
-      <MintButton/>
+      <MintButton />
+      <div className=" mt-2 text-gray-300 text-xs">
+        Proceeds go to the{" "}
+        <a href="https://juicebox.money/v2/p/465">
+          <span className="italic underline">metadata</span>
+        </a>{" "}
+        project.
+      </div>
     </div>
   );
-}
+};
 
 export default MintModule;
