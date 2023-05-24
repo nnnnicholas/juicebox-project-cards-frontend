@@ -18,7 +18,11 @@ function classNames(...classes: (false | null | undefined | string)[]) {
 
 const Search: FC = () => {
   const [query, setQuery] = useState("");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  // const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>({
+    id: "1",
+    name: "Juicebox",
+  });
 
   const [projects, setProjects] = useState<Project[]>([]);
 
