@@ -16,7 +16,7 @@ function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const JBProjectDropdown: FC = () => {
+const Search: FC = () => {
   const [query, setQuery] = useState("");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -113,4 +113,4 @@ const JBProjectDropdown: FC = () => {
   );
 };
 
-export default JBProjectDropdown;
+export default Search;
