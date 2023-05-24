@@ -19,13 +19,13 @@ function classNames(...classes: (false | null | undefined | string)[]) {
 const JBProjectDropdown: FC = () => {
   const [query, setQuery] = useState("");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  
+
   const [projects, setProjects] = useState<Project[]>([]);
 
+  // Log when selectedProject changes
   useEffect(() => {
     console.log(selectedProject);
   }, [selectedProject]);
-
 
   useEffect(() => {
     const fetchProjects = async () => {

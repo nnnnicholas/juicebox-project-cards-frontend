@@ -3,7 +3,7 @@ import {FC} from "react";
 import Image from "next/image";
 import Head from "next/head";
 import { useState } from "react";
-import Search from "./Search";
+// import Search from "./Search";
 import MintButton from "./MintButton";
 import JBProjectDropbdown from "./JBProjectDropdown";
 
