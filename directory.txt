@@ -1,0 +1,17 @@
+.
+./pnpm-lock.yaml
+./next.config.js
+./.npmrc
+./next-env.d.ts
+./README.md
+./styles
+./styles/globals.css
+./styles/Home.module.css
+./.gitignore
+./package.json
+./tsconfig.json
+./pages
+./pages/index.tsx
+./pages/_app.tsx
+./directory.txt
+./.eslintrc.json
