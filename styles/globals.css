@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @font-face {
+  font-family: "Capsules-500";
+  src: url("/fonts/Capsules-500.otf") format("opentype");
+} */
 
 
 @layer base {

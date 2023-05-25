@@ -20,21 +20,21 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
       <h2>Mint a Project Card</h2>
       <div className="flex w-full">
         <div className="flex-grow mr-10 justify-items-start">
-          <div className="text-gray-400 mt-2">Choose any Juicebox project.</div>
+          <div className="text-gray-500 mt-2">Choose any Juicebox project.</div>
           <Search
             selectedProject={selectedProject}
             setSelectedProject={setSelectedProject}
           />
+          <MintButton />
+          <div className=" mt-2 text-gray-400 text-xs">
+            Proceeds go to the{" "}
+            <a href="https://juicebox.money/v2/p/465">
+              <span className="italic underline">metadata</span>
+            </a>{" "}
+            project.
+          </div>
         </div>
         <Preview selectedProject={selectedProject} />
-      </div>
-      <MintButton />
-      <div className=" mt-2 text-gray-300 text-xs">
-        Proceeds go to the{" "}
-        <a href="https://juicebox.money/v2/p/465">
-          <span className="italic underline">metadata</span>
-        </a>{" "}
-        project.
       </div>
     </div>
   );
