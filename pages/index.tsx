@@ -15,8 +15,9 @@ interface NavigationItem {
 }
 
 const navigation: NavigationItem[] = [
-  { name: "Features", href: "#features" },
   { name: "Mint", href: "#mint" },
+  { name: "Features", href: "#features" },
+  { name: "Docs", href: "#docs" },
 ];
 
 const Home: NextPage = () => {
