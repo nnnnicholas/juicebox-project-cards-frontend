@@ -7,8 +7,38 @@
   src: url("/fonts/Capsules-500.otf") format("opentype");
 } */
 
+@font-face {
+  font-family: "PPAgrandirWideBold";
+  src: url(/fonts/ppagrandirwidebold.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "PPAgrandirMedium";
+  src: url(/fonts/ppagrandirmedium.woff2) format("woff2");
+}
 
 @layer base {
+  html,
+  body,
+  div {
+    font-family: "PPAgrandirMedium";
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "PPAgrandirWideBold";
+  }
+
   h1 {
     @apply text-4xl;
     @apply font-bold;

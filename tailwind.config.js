@@ -13,9 +13,10 @@ module.exports = {
       colors: {
         mintOrange: '#FF9215',
       },
-      // fontFamily: {
-      //   'capsules': ['Capsules-500', 'sans-serif'],
-      // },
+      fontFamily: {
+        primary:"PPAgrandirMedium"
+        // 'capsules': ['Capsules-500', 'sans-serif'],
+      },
     }
 
   },
