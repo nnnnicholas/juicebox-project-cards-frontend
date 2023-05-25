@@ -20,7 +20,8 @@
 @layer base {
   html,
   body,
-  div {
+  div,
+  p {
     font-family: "PPAgrandirMedium";
     font-size: 16px;
     line-height: 1.5;
