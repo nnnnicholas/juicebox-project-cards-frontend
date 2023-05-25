@@ -22,10 +22,31 @@ const Preview: FC<PreviewProps> = ({ selectedProject }) => {
     args: tokenId ? [tokenId] : [BigInt(1)],
   });
 
+  const [imageDecoded, setImageDecoded] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (tokenUri && tokenUri.startsWith("data:application/json;base64,")) {
+      const base64Encoded = tokenUri.replace(
+        "data:application/json;base64,",
+        ""
+      );
+      const decoded = atob(base64Encoded);
+      const json = JSON.parse(decoded);
+      if (json.image && json.image.startsWith("data:image/svg+xml;base64,")) {
+        const imageBase64Encoded = json.image.replace(
+          "data:image/svg+xml;base64,",
+          ""
+        );
+        setImageDecoded(atob(imageBase64Encoded));
+      }
+    }
+  }, [tokenUri]);
+
   if (status === "loading") return <p>Loading...</p>;
   if (status === "error") return <p>Error: {error?.message}</p>;
 
-  return <div>{tokenUri && <p>Token URI: {tokenUri}</p>}</div>;
+  return <div>{imageDecoded && <svg dangerouslySetInnerHTML={{ __html: imageDecoded }} />}</div>;
+
 };
 
 export default Preview;

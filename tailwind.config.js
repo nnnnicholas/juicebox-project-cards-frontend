@@ -13,6 +13,9 @@ module.exports = {
       colors: {
         mintOrange: '#FF9215',
       },
+      fontFamily: {
+        'capsules': ['Capsules-500', 'sans-serif'],
+      },
     }
 
   },
