@@ -126,21 +126,21 @@ const Home: NextPage = () => {
       </header>
 
       <div className="relative isolate pt-14">
-        <svg
+        {/* <svg
           className="absolute inset-0 -z-10 h-full w-[120%] left-[-10%] right-[-10%] stroke-gray-200"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <linearGradient id="gradient" x1="0%" y1="-15%" x2="0%" y2="100%">
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop
-                offset="0%"
-                style={{ stopColor: "rgba(217, 217, 217, 0)" }}
+                offset="22%"
+                style={{ stopColor: "rgba(255, 126, 32, 0)" }}
               />
-              <stop offset="46.88%" style={{ stopColor: "#FF7E20" }} />
+              <stop offset="34%" style={{ stopColor: "rgba(255, 126, 32, 255)" }} />
               <stop
-                offset="100%"
-                style={{ stopColor: "rgba(217, 217, 217, 0)" }}
+                offset="65%"
+                style={{ stopColor: "rgba(255, 126, 32, 0)" }}
               />
             </linearGradient>
             <filter id="blur">
@@ -154,7 +154,7 @@ const Home: NextPage = () => {
             fill="url(#gradient)"
             filter="url(#blur)"
           />
-        </svg>
+        </svg> */}
 
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
