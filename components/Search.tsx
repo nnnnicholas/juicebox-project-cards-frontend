@@ -32,10 +32,12 @@ const Search: FC<SearchProps> = ({ selectedProject, setSelectedProject }) => {
       const response = await fetch(
         `https://juicebox.money/api/projects?text=${query}`
       );
-      const data: Project[] = await response.json();
+      let data: Project[] = await response.json();
+      // Filter out projects with pv: '1'
+      data = data.filter(project => project.pv !== '1');
       setProjects(data.slice(0, 5));
     };
-
+  
     if (query !== "") {
       const debouncedFetch = debounce(fetchProjects, 250);
       debouncedFetch();
@@ -43,7 +45,7 @@ const Search: FC<SearchProps> = ({ selectedProject, setSelectedProject }) => {
       setProjects([]);
     }
   }, [query]);
-
+  
   const filteredProjects =
     query === ""
       ? []
