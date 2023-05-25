@@ -24,8 +24,61 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
   });
 
   const [imageDecoded, setImageDecoded] = useState<string | null>(null);
+  const [imageBlob, setImageBlob] = useState<string | null>(null);
+
+  // Log when image changes
+  // useEffect(() => {
+  //   console.log(imageDecoded);
+  // }, [imageDecoded]);
+
+  // useEffect(() => {
+  //   console.log(tokenUri);
+  // }, [tokenUri]);
 
   useEffect(() => {
+    console.log(imageBlob);
+  }, [imageBlob]);
+
+  useEffect(() => {
+    // Add gateway to ipfs uris
+    const gatewayUri = (uri: string) => {
+      if (uri.startsWith("ipfs://")) {
+        return uri.replace("ipfs://", "https://ipfs.io/ipfs/");
+        console.log(uri);
+      } else {
+        return uri;
+      }
+    };
+
+    const fetchMetadataAndImage = async (uri: string) => {
+      try {
+        // Fetch metadata
+        const metadataResponse = await fetch(gatewayUri(uri));
+        const metadata = await metadataResponse.json();
+
+        // Fetch image from metadata
+        const imageUri = metadata.image;
+        const imageResponse = await fetch(gatewayUri(imageUri));
+        const imageBlob = await imageResponse.blob();
+        const imageUrl = URL.createObjectURL(imageBlob);
+
+        // Set the decoded image URL
+        setImageDecoded(null);
+        setImageBlob(imageUrl);
+      } catch (error) {
+        console.error("Error fetching metadata and image:", error);
+      }
+    };
+
+    // Handle http:// and IPFS
+    if (
+      tokenUri &&
+      (tokenUri.startsWith("http") || tokenUri.startsWith("ipfs://"))
+    ) {
+      fetchMetadataAndImage(tokenUri);
+    }
+
+    // Handle base64 encoded svg
     if (tokenUri && tokenUri.startsWith("data:application/json;base64,")) {
       const base64Encoded = tokenUri.replace(
         "data:application/json;base64,",
@@ -38,18 +91,27 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
           "data:image/svg+xml;base64,",
           ""
         );
+        setImageBlob(null);
         setImageDecoded(atob(imageBase64Encoded));
+      } else if (json.image) {
+        fetchMetadataAndImage(json.image);
       }
     }
   }, [tokenUri]);
 
   if (status === "loading") return <p>Loading...</p>;
-  if (status === "error") return <p>Error: {error?.message}</p>;
+  if (status === "error") {
+    console.log(error?.message);
+    return <p>Error Loading</p>;
+  }
 
   return (
     <div className={`${className}`}>
       {imageDecoded && (
         <svg dangerouslySetInnerHTML={{ __html: imageDecoded }} />
+      )}
+      {imageBlob && (
+        <Image src={imageBlob} width={300} height={300} alt="Preview" />
       )}
     </div>
   );
