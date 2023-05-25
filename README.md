@@ -6,5 +6,7 @@ A frontend for the [Juicebox Project Cards contract](https://github.com/nnnnicho
 
 ## Installation
 
-1. `pnpm i`
-2. `pnpm dev`
+1. `pnpm i` Install dependencies
+2. `pnpm wagmi generate` Create Typescript bindings for contracts
+3. `pnpm dev` Start dev server
+4. Deploy with Vercel. Don't forget to upload env vars. NEXT_PUBLIC_ETHERSCAN_API_KEY (get one at https://etherscan.io) and WC_PROJECT_ID (create a WalletConnect project ID here https://cloud.walletconnect.com/app)
