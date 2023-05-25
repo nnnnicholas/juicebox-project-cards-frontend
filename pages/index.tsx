@@ -157,7 +157,7 @@ const Home: NextPage = () => {
         </svg> */}
 
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
+          <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto self-start">
             <h1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Juicebox Project Cards
             </h1>

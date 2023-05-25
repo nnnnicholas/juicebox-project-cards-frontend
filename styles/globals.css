@@ -46,7 +46,8 @@
   }
 
   h2 {
-    @apply text-3xl;
+    @apply text-2xl;
+    @apply sm:text-3xl;
     @apply font-semibold;
   }
   h3 {
