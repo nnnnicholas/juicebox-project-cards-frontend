@@ -1,8 +1,9 @@
 {
-  "name": "rainbowkit-boiler",
+  "name": "juicebox-project-cards-frontend",
   "private": true,
   "version": "0.1.0",
   "scripts": {
+    "postinstall": "pnpm wagmi generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
