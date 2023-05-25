@@ -11,7 +11,7 @@ interface PreviewProps {
 }
 
 const Preview: FC<PreviewProps> = ({ selectedProject }) => {
-  const tokenId = selectedProject ? BigInt(selectedProject.id) : undefined;
+  const tokenId = selectedProject ? BigInt(selectedProject.project_id    ) : undefined;
 
   const {
     data: tokenUri,
