@@ -18,12 +18,16 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
   return (
     <div className={`${className}`}>
       <h2>Mint a Project Card</h2>
-      <div className="text-gray-400 mt-2">Choose any Juicebox project.</div>
-      <Search
-        selectedProject={selectedProject}
-        setSelectedProject={setSelectedProject}
-      />
-      <Preview selectedProject={selectedProject} />
+      <div className="flex w-full">
+        <div className="flex-grow mr-10 justify-items-start">
+          <div className="text-gray-400 mt-2">Choose any Juicebox project.</div>
+          <Search
+            selectedProject={selectedProject}
+            setSelectedProject={setSelectedProject}
+          />
+        </div>
+        <Preview selectedProject={selectedProject} />
+      </div>
       <MintButton />
       <div className=" mt-2 text-gray-300 text-xs">
         Proceeds go to the{" "}
