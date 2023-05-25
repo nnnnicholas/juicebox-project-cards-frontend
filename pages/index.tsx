@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           content="Keep track of your favorite Juicebox Projects right inside your wallet."
           name="description"
         />
-        {/* <link href="/favicon.ico" rel="icon" /> */}
+        <link href="/favicon.ico" rel="icon" />
       </Head>
 
       <header className="absolute inset-x-0 top-0 z-50">
