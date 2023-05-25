@@ -85,7 +85,7 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
     }
   }, [tokenUri]);
 
-  if (status === "loading") return <p>Loading...</p>;
+  // if (status === "loading") return <p>Loading...</p>;
   if (status === "error") {
     console.log(error?.message);
     return <p>Error Loading</p>;
