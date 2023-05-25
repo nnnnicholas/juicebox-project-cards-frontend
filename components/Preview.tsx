@@ -6,11 +6,12 @@ import { useJbProjectsTokenUri } from "../resources/generated";
 
 interface PreviewProps {
   selectedProject: Project | null;
+  className?: string;
 }
 
 const JBPROJECTS_ADDRESS = "0xD8B4359143eda5B2d763E127Ed27c77addBc47d3";
 
-const Preview: FC<PreviewProps> = ({ selectedProject }) => {
+const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
   const tokenId = selectedProject ? BigInt(selectedProject.project_id) : null;
 
   const {
@@ -45,8 +46,13 @@ const Preview: FC<PreviewProps> = ({ selectedProject }) => {
   if (status === "loading") return <p>Loading...</p>;
   if (status === "error") return <p>Error: {error?.message}</p>;
 
-  return <div>{imageDecoded && <svg dangerouslySetInnerHTML={{ __html: imageDecoded }} />}</div>;
-
+  return (
+    <div className={`${className}`}>
+      {imageDecoded && (
+        <svg dangerouslySetInnerHTML={{ __html: imageDecoded }} />
+      )}
+    </div>
+  );
 };
 
 export default Preview;
