@@ -1,22 +1,19 @@
-import type { NextPage } from "next";
 import { FC } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import MintButton from "./MintButton";
 import Search from "./Search";
-import Preview from "./Preview";
 import { Project } from "../interfaces/Project";
+import dynamic from "next/dynamic";
+const Preview = dynamic(() => import("./Preview"), { ssr: false });
 
 type MintModuleProps = {
   className?: string;
 };
 
 const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>({
-    project_id: "1",
-    name: "Juicebox",
-  });
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <div className={`${className}`}>

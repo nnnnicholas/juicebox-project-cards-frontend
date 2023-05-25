@@ -14,17 +14,11 @@ export default defineConfig({
     }
   ],
   plugins: [
-    //   etherscan({
-    //     apiKey: process.env.ETHERSCAN_API_KEY!,
-    //     chainId: mainnet.id,
-    //     contracts: [{
-    //       name: 'JBProjects',
-    //       address: {
-    //         [mainnet.id]: '0xD8B4359143eda5B2d763E127Ed27c77addBc47d3',
-    //       },
-    //     },
-    //     ],
-    //   }),
+    etherscan({
+      apiKey: process.env.NEXT_PUBLIC_ETHERSCAN_API_KEY!,
+      chainId: mainnet.id,
+      contracts: [],
+    }),
     react(),
   ],
 })
