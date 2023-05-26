@@ -41,7 +41,7 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
             setSelectedProject={setSelectedProjectWrapper}
           />
           {isDisconnected ? (
-            <ConnectButton accountStatus="address" />
+            <div className=" pt-2.5"><ConnectButton accountStatus="address" /></div>
           ) : (
             <MintButton selectedProject={selectedProject} />
           )}

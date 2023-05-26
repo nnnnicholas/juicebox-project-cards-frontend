@@ -42,8 +42,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         modalSize="compact"
         theme={lightTheme({
           accentColor: "#FF9215",
+          borderRadius: 'small',
           // accentColorForeground: "white",
-          // borderRadius: "medium",
         })}
       >
         <Component {...pageProps} />
