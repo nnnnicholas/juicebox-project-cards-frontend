@@ -78,7 +78,6 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
         const imageBase64Encoded = json.image.replace(SVG_BASE64_PREFIX, "");
         setImageBlob(null);
         setImageDecoded(base64Decode(imageBase64Encoded));
-        console.log(base64Decode(imageBase64Encoded));
       } else if (json.image) {
         fetchMetadataAndImage(json.image);
       }
