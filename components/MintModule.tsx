@@ -24,6 +24,11 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
     useState<Project>(initialProject);
 
   const { address, isConnecting, isDisconnected } = useAccount();
+  
+  // This hack solves type complaint in search params. Iffy
+  const setSelectedProjectWrapper = (project: Project | null) => {
+    project ? setSelectedProject(project) : null;
+  };
 
   return (
     <div className={`${className}`}>
@@ -33,7 +38,7 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
           <div className="text-gray-500 mt-2">Choose any Juicebox project.</div>
           <Search
             selectedProject={selectedProject}
-            setSelectedProject={setSelectedProject}
+            setSelectedProject={setSelectedProjectWrapper}
           />
           {isDisconnected ? (
             <ConnectButton accountStatus="address" />
