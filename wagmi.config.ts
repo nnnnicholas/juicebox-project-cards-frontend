@@ -25,12 +25,12 @@ export default defineConfig({
       apiKey: process.env.NEXT_PUBLIC_ETHERSCAN_API_KEY!,
       chainId: mainnet.id,
       contracts: [
-        {
-          name: 'JBProjectCards',
-          address: {
-            [mainnet.id]: '0xe601Eae33A0109147a6F3CD5F81997233d42FEDD',
-          }
-        }
+        // {
+        //   name: 'JBProjectCards',
+        //   address: {
+        //     [mainnet.id]: '0xe601Eae33A0109147a6F3CD5F81997233d42FEDD',
+        //   }
+        // }
       ],
     }),
     react(),
