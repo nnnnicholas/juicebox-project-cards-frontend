@@ -15,10 +15,10 @@ export default defineConfig({
       name: 'JBProjects',
       abi: jbprojectsabi,
     },
-    // {
-    //   name: 'JBProjectCards',
-    //   abi: jbprojectcardsabi,
-    // }
+    {
+      name: 'JBProjectCards',
+      abi: jbprojectcardsabi,
+    }
   ],
   plugins: [
     etherscan({
