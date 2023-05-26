@@ -15,7 +15,7 @@ interface NavigationItem {
 }
 
 const navigation: NavigationItem[] = [
-  { name: "Mint", href: "#mint" },
+  // { name: "Mint", href: "#mint" },
   // { name: "Trending", href: "#trending" },
   // { name: "Features", href: "#features" },
   // { name: "Docs", href: "#docs" },
