@@ -6,8 +6,8 @@ import MintButton from "./MintButton";
 import Search from "./Search";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Project } from "../interfaces/Project";
-import dynamic from "next/dynamic";
 import { useAccount } from "wagmi";
+import dynamic from "next/dynamic";
 const Preview = dynamic(() => import("./Preview"), { ssr: false });
 
 type MintModuleProps = {
@@ -31,7 +31,7 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
   };
 
   return (
-    <div className={`${className}`}>
+    <div id="mint" className={`${className}`}>
       <h2>Mint a Project Card</h2>
       <div className="flex w-full flex-col sm:flex-row">
         <div className="flex-grow mr-10 justify-items-start order-2 sm:order-1">
@@ -41,7 +41,7 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
             setSelectedProject={setSelectedProjectWrapper}
           />
           {isDisconnected ? (
-            <div className=" pt-2.5"><ConnectButton accountStatus="address" /></div>
+            <div className="pt-2.5"><ConnectButton accountStatus="address" /></div>
           ) : (
             <MintButton selectedProject={selectedProject} />
           )}
