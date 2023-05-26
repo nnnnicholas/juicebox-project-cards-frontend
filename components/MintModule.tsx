@@ -4,8 +4,10 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import MintButton from "./MintButton";
 import Search from "./Search";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Project } from "../interfaces/Project";
 import dynamic from "next/dynamic";
+import { useAccount } from "wagmi";
 const Preview = dynamic(() => import("./Preview"), { ssr: false });
 
 type MintModuleProps = {
@@ -21,6 +23,8 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
   const [selectedProject, setSelectedProject] =
     useState<Project>(initialProject);
 
+  const { address, isConnecting, isDisconnected } = useAccount();
+
   return (
     <div className={`${className}`}>
       <h2>Mint a Project Card</h2>
@@ -31,7 +35,11 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
             selectedProject={selectedProject}
             setSelectedProject={setSelectedProject}
           />
-          <MintButton selectedProject={selectedProject} />
+          {isDisconnected ? (
+            <ConnectButton accountStatus="address" />
+          ) : (
+            <MintButton selectedProject={selectedProject} />
+          )}
           <div className="mt-2 text-gray-400 text-xs">
             Proceeds go to the{" "}
             <a href="https://juicebox.money/v2/p/465">
