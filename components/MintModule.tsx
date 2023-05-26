@@ -13,7 +13,13 @@ type MintModuleProps = {
 };
 
 const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const initialProject: Project = {
+    project_id: "1",
+    name: "Juicebox",
+  };
+
+  const [selectedProject, setSelectedProject] =
+    useState<Project>(initialProject);
 
   return (
     <div className={`${className}`}>
