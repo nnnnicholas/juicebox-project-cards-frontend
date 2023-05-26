@@ -3,26 +3,40 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import MintModule from "../components/MintModule";
+import { useContractRead } from "wagmi";
+import dynamic from "next/dynamic";
+import { useTreasuryBalance } from "../hooks/useTreasuryBalance";
 
 interface NavigationItem {
   name: string;
   href: string;
 }
 
-const navigation: NavigationItem[] = [
-  // { name: "Mint", href: "#mint" },
-  // { name: "Trending", href: "#trending" },
-  // { name: "Features", href: "#features" },
-  // { name: "Docs", href: "#docs" },
-];
-
 const Home: NextPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { treasuryBalance, isError, isLoading } = useTreasuryBalance();
+
+  const [treasuryText, setTreasuryText] = useState("Treasury");
+  useEffect(() => {
+    !isLoading &&
+      !isError &&
+      treasuryBalance &&
+      setTreasuryText(`Treasury ${treasuryBalance.toString()} ETH`);
+  }, [treasuryBalance, isError, isLoading]);
+
+  const navigation: NavigationItem[] = [
+    { name: "Mint", href: "#mint" },
+    // { name: "Trending", href: "#trending" },
+    // { name: "Features", href: "#features" },
+    // { name: "Docs", href: "#docs" },
+    { name: treasuryText, href: "https://juicebox.money/v2/p/465" },
+  ];
+
   return (
     <div className="bg-white">
       <Head>
@@ -73,9 +87,6 @@ const Home: NextPage = () => {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a> */}
             <ConnectButton accountStatus="address" />
           </div>
         </nav>
