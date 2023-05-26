@@ -35,7 +35,7 @@ const MintButton: FC<MintProps> = ({ selectedProject }) => {
     ],
     functionName: "mint",
     args: [BigInt(projectId ? projectId: 0)],
-    value: projectId ? projectId : BigInt(0),
+    value: BigInt(10000000000000000),
     enabled: Boolean(projectId),
   });
 
