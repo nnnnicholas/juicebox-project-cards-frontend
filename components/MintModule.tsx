@@ -25,7 +25,7 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
             selectedProject={selectedProject}
             setSelectedProject={setSelectedProject}
           />
-          <MintButton />
+          <MintButton selectedProject={selectedProject} />
           <div className="mt-2 text-gray-400 text-xs">
             Proceeds go to the{" "}
             <a href="https://juicebox.money/v2/p/465">
@@ -34,7 +34,10 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
             project.
           </div>
         </div>
-        <Preview selectedProject={selectedProject} className="mt-5 order-1 sm:order-2" />
+        <Preview
+          selectedProject={selectedProject}
+          className="mt-5 order-1 sm:order-2"
+        />
       </div>
     </div>
   );
