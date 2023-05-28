@@ -49,7 +49,6 @@ export const useTreasuryBalance = () => {
   
   useEffect(() => {
     if (data) {
-      console.log("useTreasuryBalance success. Data:", data)
       setTreasuryBalance(Number(data) / 10 ** 18);
     }
   }, [data]);

@@ -16,6 +16,15 @@ const IPFS_GATEWAY_PREFIX = "https://ipfs.io/ipfs/";
 const BASE64_PREFIX = "data:application/json;base64,";
 const SVG_BASE64_PREFIX = "data:image/svg+xml;base64,";
 
+// Add gateway to ipfs uris
+const gatewayUri = (uri: string) => {
+  if (uri.startsWith(IPFS_PREFIX)) {
+    return uri.replace(IPFS_PREFIX, IPFS_GATEWAY_PREFIX);
+  } else {
+    return uri;
+  }
+};
+
 const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
   const tokenId = selectedProject ? BigInt(selectedProject.project_id) : null;
 
@@ -32,15 +41,6 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
   const [imageBlob, setImageBlob] = useState<string | null>(null);
 
   useEffect(() => {
-    // Add gateway to ipfs uris
-    const gatewayUri = (uri: string) => {
-      if (uri.startsWith(IPFS_PREFIX)) {
-        return uri.replace(IPFS_PREFIX, IPFS_GATEWAY_PREFIX);
-      } else {
-        return uri;
-      }
-    };
-
     const fetchMetadataAndImage = async (uri: string) => {
       try {
         // Fetch metadata
@@ -92,14 +92,13 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
 
   function base64Decode(input: string): string {
     // Convert the base64 string back to bytes
-    const buffer = Buffer.from(input, 'base64');
+    const buffer = Buffer.from(input, "base64");
 
     // Convert those bytes back into a string
-    const decoded = buffer.toString('utf8');
+    const decoded = buffer.toString("utf8");
 
     return decoded;
-}
-
+  }
 
   return (
     <div className={`${className || ""}`}>
