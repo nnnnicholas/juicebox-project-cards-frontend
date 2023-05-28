@@ -23,14 +23,16 @@ const TopNftsComponent: FC = () => {
   return (
     <div>
       <h1>Top NFTs</h1>
-      {topNfts.map((tokenId, index) => {
-        const project: Project = {
-          project_id: tokenId,
-          name: "", // name is empty
-        };
-
-        return <Preview key={index} selectedProject={project} />;
-      })}
+      <div className="flex">
+        {topNfts.map((tokenId, index) => {
+          const project: Project = {
+            project_id: tokenId,
+            name: "", // name is empty
+          };
+          
+          return <Preview key={index} selectedProject={project} />;
+        })}
+        </div>
     </div>
   );
 };
