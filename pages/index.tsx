@@ -11,6 +11,7 @@ import MintModule from "../components/MintModule";
 import { useContractRead } from "wagmi";
 import dynamic from "next/dynamic";
 import { useTreasuryBalance } from "../hooks/useTreasuryBalance";
+import TopNfts from "../components/TopNfts";
 
 interface NavigationItem {
   name: string;
@@ -188,6 +189,10 @@ const Home: NextPage = () => {
               alt="screenshot"
             />
           </div>
+        </div>
+        <div>
+          {" "}
+          <TopNfts />
         </div>
       </div>
     </div>
