@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { Project } from "../interfaces/Project";
 import { mainnet } from "wagmi/chains";
@@ -16,6 +16,15 @@ const IPFS_GATEWAY_PREFIX = "https://ipfs.io/ipfs/";
 const BASE64_PREFIX = "data:application/json;base64,";
 const SVG_BASE64_PREFIX = "data:image/svg+xml;base64,";
 
+// Add gateway to ipfs uris
+const gatewayUri = (uri: string) => {
+  if (uri.startsWith(IPFS_PREFIX)) {
+    return uri.replace(IPFS_PREFIX, IPFS_GATEWAY_PREFIX);
+  } else {
+    return uri;
+  }
+};
+
 const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
   const tokenId = selectedProject ? BigInt(selectedProject.project_id) : null;
 
@@ -31,16 +40,16 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
   const [imageDecoded, setImageDecoded] = useState<string | null>(null);
   const [imageBlob, setImageBlob] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Add gateway to ipfs uris
-    const gatewayUri = (uri: string) => {
-      if (uri.startsWith(IPFS_PREFIX)) {
-        return uri.replace(IPFS_PREFIX, IPFS_GATEWAY_PREFIX);
-      } else {
-        return uri;
-      }
-    };
+  const uniqueId = useMemo(
+    () => `svg-${Math.random().toString(36).substr(2, 9)}`,
+    []
+  );
+  const uniqueClass = useMemo(
+    () => `class-${Math.random().toString(36).substr(2, 9)}`,
+    []
+  );
 
+  useEffect(() => {
     const fetchMetadataAndImage = async (uri: string) => {
       try {
         // Fetch metadata
@@ -76,13 +85,39 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
       const json = JSON.parse(decoded);
       if (json.image && json.image.startsWith(SVG_BASE64_PREFIX)) {
         const imageBase64Encoded = json.image.replace(SVG_BASE64_PREFIX, "");
+        let decodedImage = base64Decode(imageBase64Encoded);
+
+        // Modify the SVG to isolate its styles
+        decodedImage = decodedImage.replace(
+          /<style>([\s\S]*?)<\/style>/g,
+          (match, p1) => {
+            // Prepend all selectors in the style block with the unique ID
+            const scopedStyles = p1.replace(
+              /([^{]+)\{/g,
+              (match: string) => `#${uniqueId} ${match.trim()}`
+            );
+            // Replace all instances of 'text' with the unique class
+            const classedStyles = scopedStyles.replace(
+              /text/g,
+              `.${uniqueClass}`
+            );
+            return `<style>${classedStyles}</style>`;
+          }
+        );
+
+        // Replace all instances of 'text' in the SVG with the unique class
+        decodedImage = decodedImage.replace(
+          /<text /g,
+          `<text class="${uniqueClass}" `
+        );
+
         setImageBlob(null);
-        setImageDecoded(base64Decode(imageBase64Encoded));
+        setImageDecoded(decodedImage);
       } else if (json.image) {
         fetchMetadataAndImage(json.image);
       }
     }
-  }, [tokenUri]);
+  }, [tokenUri, uniqueId, uniqueClass]);
 
   // if (status === "loading") return <p>Loading...</p>;
   if (status === "error") {
@@ -92,19 +127,19 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
 
   function base64Decode(input: string): string {
     // Convert the base64 string back to bytes
-    const buffer = Buffer.from(input, 'base64');
+    const buffer = Buffer.from(input, "base64");
 
     // Convert those bytes back into a string
-    const decoded = buffer.toString('utf8');
+    const decoded = buffer.toString("utf8");
 
     return decoded;
-}
-
+  }
 
   return (
     <div className={`${className || ""}`}>
       {imageDecoded && (
-        <svg dangerouslySetInnerHTML={{ __html: imageDecoded }} />
+        // Add the unique ID to the root of the SVG
+        <svg id={uniqueId} dangerouslySetInnerHTML={{ __html: imageDecoded }} />
       )}
       {imageBlob && (
         <Image src={imageBlob} width={300} height={300} alt="Preview" />
