@@ -41,7 +41,7 @@ const Home: NextPage = () => {
   return (
     <div className="bg-white">
       <Head>
-        <title>Juicebox Project Cards</title>
+        <title>Juicebox Cards</title>
         <meta
           content="Keep track of your favorite Juicebox Projects right inside your wallet."
           name="description"
@@ -170,15 +170,15 @@ const Home: NextPage = () => {
           />
         </svg> */}
 
-        <div className="mx-auto max-w-7xl px-6 pb-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+        <div className="mx-auto max-w-7xl px-6 pb-24 sm:pt-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto self-start">
-            <h1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Juicebox Project Cards
+            <h1 className="mt-30 max-w text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+              Juicebox Cards
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Track your favorite Juicebox Projects inside your wallet.
             </p>
-            <MintModule className="mt-20" />
+            <MintModule className="flex flex-col grow mt-20" />
           </div>
           <div className="flex justify-center mt-16 sm:mt-24 lg:mt-0 lg:ml-20 sm:ml-0 lg:flex-shrink-0 lg:flex-grow">
             <Image
@@ -190,8 +190,7 @@ const Home: NextPage = () => {
             />
           </div>
         </div>
-        <div>
-          {" "}
+        <div className="mx-auto max-w-7xl px-6 pb-24 sm:pb-32 lg:flex lg:justify-center lg:gap-x-10 lg:px-8">
           <TopNfts />
         </div>
       </div>

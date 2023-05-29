@@ -33,8 +33,8 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
   return (
     <div id="mint" className={`${className}`}>
       <h2>Mint a Project Card</h2>
-      <div className="flex w-full flex-col sm:flex-row">
-        <div className="flex-grow mr-10 justify-items-start order-2 sm:order-1">
+      <div className="flex flex-col sm:flex-row">
+        <div className="grow max-w-50 max-w-md mr-10 justify-items-start order-2 sm:order-1">
           <div className="text-gray-500 mt-2">Choose any Juicebox project.</div>
           <Search
             selectedProject={selectedProject}

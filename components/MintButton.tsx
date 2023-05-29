@@ -13,8 +13,9 @@ import {
 
 interface MintProps {
   selectedProject: Project | null;
+  className?: string;
 }
-const MintButton: FC<MintProps> = ({ selectedProject }) => {
+const MintButton: FC<MintProps> = ({ selectedProject, className="" }) => {
   const projectId = selectedProject
     ? BigInt(selectedProject.project_id)
     : undefined;
@@ -49,7 +50,7 @@ const MintButton: FC<MintProps> = ({ selectedProject }) => {
   return (
     <button
       type="button"
-      className="mt-2 cursor-pointer rounded-md bg-mintOrange px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      className={`mt-2 cursor-pointer rounded-md bg-mintOrange px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600  ${className}`}
       onClick={() => {
         write?.();
       }}

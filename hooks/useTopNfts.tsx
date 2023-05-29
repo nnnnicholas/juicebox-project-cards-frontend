@@ -12,8 +12,10 @@ type ApiError = {
   message: string;
 };
 
+const TOP_NFT_COUNT = 3;
+
 export default function useTopNfts() {
-  const [topNfts, setTopNfts] = useState<string[]>([]);
+  const [topNfts, setTopNfts] = useState<{ tokenId: string, mintCount: number }[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -52,8 +54,8 @@ export default function useTopNfts() {
 
         const sortedCounts = Object.entries(counts)
           .sort((a, b) => b[1] - a[1])
-          .slice(0, 3)
-          .map(([tokenId]) => tokenId);
+          .slice(0, TOP_NFT_COUNT)
+          .map(([tokenId, mintCount]) => ({ tokenId, mintCount }));
 
         setTopNfts(sortedCounts);
       })
