@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 type Nft = {
   tokenId: string;
+  mintCount: number;
 };
 
 type ApiResponse = {
@@ -15,7 +16,7 @@ type ApiError = {
 const TOP_NFT_COUNT = 3;
 
 export default function useTopNfts() {
-  const [topNfts, setTopNfts] = useState<{ tokenId: string, mintCount: number }[]>([]);
+  const [topNfts, setTopNfts] = useState<Nft[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -36,28 +37,15 @@ export default function useTopNfts() {
           throw new Error("Expected data.nfts to be an array");
         }
 
-        const counts: Record<string, number> = {};
+        console.log("Received NFTs from API:", data.nfts); // Logging the raw data from API
 
-        for (const nft of data.nfts) {
-            if (typeof nft?.tokenId !== "string") {
-                throw new Error("Expected nft.id.tokenId to be a string");
-            }
-            
-            const tokenId = nft?.tokenId;
+        const sortedNfts = data.nfts
+          .sort((a, b) => b.mintCount - a.mintCount)
+          .slice(0, TOP_NFT_COUNT);
 
-          if (counts[tokenId]) {
-            counts[tokenId]++;
-          } else {
-            counts[tokenId] = 1;
-          }
-        }
+        console.log("Top minted NFTs:", sortedNfts); // Logging the final result
 
-        const sortedCounts = Object.entries(counts)
-          .sort((a, b) => b[1] - a[1])
-          .slice(0, TOP_NFT_COUNT)
-          .map(([tokenId, mintCount]) => ({ tokenId, mintCount }));
-
-        setTopNfts(sortedCounts);
+        setTopNfts(sortedNfts);
       })
       .catch((error) => {
         setError(error.message);
