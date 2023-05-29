@@ -20,12 +20,7 @@ const Search: FC<SearchProps> = ({ selectedProject, setSelectedProject }) => {
   const [query, setQuery] = useState("");
 
   const [projects, setProjects] = useState<Project[]>([]);
-
-  // Log when selectedProject changes
-  useEffect(() => {
-    console.log(selectedProject);
-  }, [selectedProject]);
-
+  
   useEffect(() => {
     const fetchProjects = async () => {
       const response = await fetch(
