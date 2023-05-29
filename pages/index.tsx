@@ -178,7 +178,7 @@ const Home: NextPage = () => {
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Track your favorite Juicebox Projects inside your wallet.
             </p>
-            <MintModule className="flex flex-col grow mt-20" />
+            <MintModule className="flex flex-col grow items-center mt-6 lg:mt-20 sm:items-stretch" />
           </div>
           <div className="flex justify-center mt-16 sm:mt-24 lg:mt-0 lg:ml-20 sm:ml-0 lg:flex-shrink-0 lg:flex-grow">
             <Image
