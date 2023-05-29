@@ -37,7 +37,7 @@ const TopNftsComponent: FC = () => {
           return (
             <div
               key={index}
-              className="w-78 max-w-[300px] pb-8 flex flex-col lg:py-0 lg:justify-between content-center"
+              className="border-solid border-2 bg-gray-100 rounded-lg border-grey-600 w-78 max-w-[350px] mb-8 mx-2 p-3 flex flex-col lg:my-0 lg:justify-between content-center"
             >
               <div className="flex w-full place-content-between items-baseline">
                 <h3>{ranks[index]}</h3>
