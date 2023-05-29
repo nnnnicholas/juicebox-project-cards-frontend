@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { Project } from "../interfaces/Project";
 import { mainnet } from "wagmi/chains";
@@ -40,6 +40,15 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
   const [imageDecoded, setImageDecoded] = useState<string | null>(null);
   const [imageBlob, setImageBlob] = useState<string | null>(null);
 
+  const uniqueId = useMemo(
+    () => `svg-${Math.random().toString(36).substr(2, 9)}`,
+    []
+  );
+  const uniqueClass = useMemo(
+    () => `class-${Math.random().toString(36).substr(2, 9)}`,
+    []
+  );
+
   useEffect(() => {
     const fetchMetadataAndImage = async (uri: string) => {
       try {
@@ -76,13 +85,39 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
       const json = JSON.parse(decoded);
       if (json.image && json.image.startsWith(SVG_BASE64_PREFIX)) {
         const imageBase64Encoded = json.image.replace(SVG_BASE64_PREFIX, "");
+        let decodedImage = base64Decode(imageBase64Encoded);
+
+        // Modify the SVG to isolate its styles
+        decodedImage = decodedImage.replace(
+          /<style>([\s\S]*?)<\/style>/g,
+          (match, p1) => {
+            // Prepend all selectors in the style block with the unique ID
+            const scopedStyles = p1.replace(
+              /([^{]+)\{/g,
+              (match: string) => `#${uniqueId} ${match.trim()}`
+            );
+            // Replace all instances of 'text' with the unique class
+            const classedStyles = scopedStyles.replace(
+              /text/g,
+              `.${uniqueClass}`
+            );
+            return `<style>${classedStyles}</style>`;
+          }
+        );
+
+        // Replace all instances of 'text' in the SVG with the unique class
+        decodedImage = decodedImage.replace(
+          /<text /g,
+          `<text class="${uniqueClass}" `
+        );
+
         setImageBlob(null);
-        setImageDecoded(base64Decode(imageBase64Encoded));
+        setImageDecoded(decodedImage);
       } else if (json.image) {
         fetchMetadataAndImage(json.image);
       }
     }
-  }, [tokenUri]);
+  }, [tokenUri, uniqueId, uniqueClass]);
 
   // if (status === "loading") return <p>Loading...</p>;
   if (status === "error") {
@@ -103,7 +138,8 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
   return (
     <div className={`${className || ""}`}>
       {imageDecoded && (
-        <svg dangerouslySetInnerHTML={{ __html: imageDecoded }} />
+        // Add the unique ID to the root of the SVG
+        <svg id={uniqueId} dangerouslySetInnerHTML={{ __html: imageDecoded }} />
       )}
       {imageBlob && (
         <Image src={imageBlob} width={300} height={300} alt="Preview" />
