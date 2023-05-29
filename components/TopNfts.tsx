@@ -37,14 +37,14 @@ const TopNftsComponent: FC = () => {
           return (
             <div
               key={index}
-              className="border-solid border-2 bg-gray-100 rounded-lg border-grey-600 w-78 max-w-[350px] mb-8 mx-2 p-3 flex flex-col lg:my-0 lg:justify-between content-center"
+              className="border-solid border-2 bg-gray-100 rounded-lg border-grey-600 w-78 max-w-[350px] mb-8 mx-2 flex flex-col lg:my-0 lg:justify-between content-center"
             >
               <div className="flex w-full place-content-between items-baseline">
-                <h3>{ranks[index]}</h3>
-                <div>{mintCount} minted</div>
+                <h3 className="pl-8 pt-8">{ranks[index]}</h3>
+                <div className="pr-8 pt-8">{mintCount} minted</div>
               </div>
-              <Preview selectedProject={project} className="py-4 w-full" />
-              <MintButton selectedProject={project} className="" />
+              <Preview selectedProject={project} className="pt-2 w-full" />
+              <MintButton selectedProject={project} className="mt-0" />
             </div>
           );
         })}
