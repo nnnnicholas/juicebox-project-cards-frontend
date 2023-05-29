@@ -28,7 +28,7 @@ const TopNftsComponent: FC = () => {
       <p className="text-gray-500 mt-2">
         The top three most minted Juicebox Cards.
       </p>
-      <div className="flex flex-col pt-10 lg:flex-row lg:place-content-between mt-4">
+      <div className="flex flex-col pt-8 justify-center items-center lg:flex-row lg:justify-space-between lg:items-stretch lg:place-content-between mt-4">
         {topNfts.map(({ tokenId, mintCount }, index) => {
           const project: Project = {
             project_id: tokenId,
@@ -37,7 +37,7 @@ const TopNftsComponent: FC = () => {
           return (
             <div
               key={index}
-              className="flex flex-col items-center pb-8 md:py-0 md:justify-between content-center"
+              className="w-78 max-w-[300px] pb-8 flex flex-col lg:py-0 lg:justify-between content-center"
             >
               <div className="flex w-full place-content-between items-baseline">
                 <h3>{ranks[index]}</h3>
