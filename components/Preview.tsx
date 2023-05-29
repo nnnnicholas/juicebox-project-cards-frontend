@@ -1,9 +1,6 @@
 import { FC, useState, useEffect, useMemo } from "react";
-import Image from "next/image";
 import { Project } from "../interfaces/Project";
-import { mainnet } from "wagmi/chains";
 import { useJbProjectsTokenUri } from "../resources/generated";
-import { log } from "console";
 
 interface PreviewProps {
   selectedProject: Project | null;
@@ -16,7 +13,6 @@ const IPFS_GATEWAY_PREFIX = "https://ipfs.io/ipfs/";
 const BASE64_PREFIX = "data:application/json;base64,";
 const SVG_BASE64_PREFIX = "data:image/svg+xml;base64,";
 
-// Add gateway to ipfs uris
 const gatewayUri = (uri: string) => {
   if (uri.startsWith(IPFS_PREFIX)) {
     return uri.replace(IPFS_PREFIX, IPFS_GATEWAY_PREFIX);
@@ -37,40 +33,24 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
     args: tokenId ? [tokenId] : [BigInt(1)],
   });
 
-  const [imageDecoded, setImageDecoded] = useState<string | null>(null);
   const [imageBlob, setImageBlob] = useState<string | null>(null);
-
-  const uniqueId = useMemo(
-    () => `svg-${Math.random().toString(36).substr(2, 9)}`,
-    []
-  );
-  const uniqueClass = useMemo(
-    () => `class-${Math.random().toString(36).substr(2, 9)}`,
-    []
-  );
 
   useEffect(() => {
     const fetchMetadataAndImage = async (uri: string) => {
       try {
-        // Fetch metadata
         const metadataResponse = await fetch(gatewayUri(uri));
         const metadata = await metadataResponse.json();
-
-        // Fetch image from metadata
         const imageUri = metadata.image;
         const imageResponse = await fetch(gatewayUri(imageUri));
         const imageBlob = await imageResponse.blob();
         const imageUrl = URL.createObjectURL(imageBlob);
 
-        // Set the decoded image URL
-        setImageDecoded(null);
         setImageBlob(imageUrl);
       } catch (error) {
         console.error("Error fetching metadata and image:", error);
       }
     };
 
-    // Handle http:// and IPFS
     if (
       tokenUri &&
       (tokenUri.startsWith("http") || tokenUri.startsWith("ipfs://"))
@@ -78,72 +58,56 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
       fetchMetadataAndImage(tokenUri);
     }
 
-    // Handle base64 encoded svg
     if (tokenUri && tokenUri.startsWith(BASE64_PREFIX)) {
       const base64Encoded = tokenUri.replace(BASE64_PREFIX, "");
       const decoded = base64Decode(base64Encoded);
       const json = JSON.parse(decoded);
+
       if (json.image && json.image.startsWith(SVG_BASE64_PREFIX)) {
         const imageBase64Encoded = json.image.replace(SVG_BASE64_PREFIX, "");
-        let decodedImage = base64Decode(imageBase64Encoded);
 
-        // Modify the SVG to isolate its styles
-        decodedImage = decodedImage.replace(
-          /<style>([\s\S]*?)<\/style>/g,
-          (match, p1) => {
-            // Prepend all selectors in the style block with the unique ID
-            const scopedStyles = p1.replace(
-              /([^{]+)\{/g,
-              (match: string) => `#${uniqueId} ${match.trim()}`
-            );
-            // Replace all instances of 'text' with the unique class
-            const classedStyles = scopedStyles.replace(
-              /text/g,
-              `.${uniqueClass}`
-            );
-            return `<style>${classedStyles}</style>`;
+        const img = new Image();
+        img.src = `data:image/svg+xml;base64,${imageBase64Encoded}`;
+
+        img.onload = function () {
+          const pixelRatio = window.devicePixelRatio || 1;
+          const canvas = document.createElement("canvas");
+          canvas.width = img.width * pixelRatio; // Multiply by pixel ratio
+          canvas.height = img.height * pixelRatio; // Multiply by pixel ratio
+
+          const ctx = canvas.getContext("2d");
+          if (!ctx) {
+            console.error("Unable to get 2D context");
+            return;
           }
-        );
 
-        // Replace all instances of 'text' in the SVG with the unique class
-        decodedImage = decodedImage.replace(
-          /<text /g,
-          `<text class="${uniqueClass}" `
-        );
+          ctx.scale(pixelRatio, pixelRatio); // Scale everything drawn on canvas
+          ctx.drawImage(img, 0, 0, img.width, img.height); // Draw with original dimensions
 
-        setImageBlob(null);
-        setImageDecoded(decodedImage);
+          const pngUrl = canvas.toDataURL();
+          setImageBlob(pngUrl);
+        };
       } else if (json.image) {
         fetchMetadataAndImage(json.image);
       }
     }
-  }, [tokenUri, uniqueId, uniqueClass]);
-
-  // if (status === "loading") return <p>Loading...</p>;
-  if (status === "error") {
-    console.log(error?.message);
-    return <p>Error Loading</p>;
-  }
+  }, [tokenUri]);
 
   function base64Decode(input: string): string {
-    // Convert the base64 string back to bytes
     const buffer = Buffer.from(input, "base64");
-
-    // Convert those bytes back into a string
     const decoded = buffer.toString("utf8");
 
     return decoded;
   }
 
+  if (status === "error") {
+    console.log(error?.message);
+    return <p>Error Loading</p>;
+  }
+
   return (
     <div className={`${className || ""}`}>
-      {imageDecoded && (
-        // Add the unique ID to the root of the SVG
-        <svg id={uniqueId} dangerouslySetInnerHTML={{ __html: imageDecoded }} />
-      )}
-      {imageBlob && (
-        <Image src={imageBlob} width={300} height={300} alt="Preview" />
-      )}
+      {imageBlob && <img src={imageBlob} alt="Preview" />}
     </div>
   );
 };

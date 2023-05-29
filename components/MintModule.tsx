@@ -55,7 +55,7 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
         </div>
         <Preview
           selectedProject={selectedProject}
-          className="mt-5 order-1 sm:order-2"
+          className="mt-5 max-w-[300px] order-1 sm:order-2"
         />
       </div>
     </div>
