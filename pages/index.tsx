@@ -203,7 +203,7 @@ const Home: NextPage = () => {
           id="how"
           className="flex flex-col items-center mx-auto max-w-7xl px-6 pb-0 sm:pb-10 lg:gap-x-10 lg:px-8"
         >
-          <h2 className="self-start mb-14">How Cards Work</h2>
+          <h2 className="self-start mb-14 sm:mb-20">How Cards Work</h2>
           <div className="flex flex-col items-center sm:flex-row mb-14">
             <div className=" mb-4 sm:mr-8 sm:mb-0 lg:mr-16">
               <Image
