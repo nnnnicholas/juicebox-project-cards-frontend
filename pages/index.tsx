@@ -180,7 +180,7 @@ const Home: NextPage = () => {
             </p>
             <MintModule className="flex flex-col grow items-center mt-6 lg:mt-20 sm:items-stretch" />
           </div>
-          <div className="relative mt-16 h-[320px] lg:h-[600px] sm:mt-24 lg:mt-0 lg:ml-20 sm:ml-0 lg:flex-shrink-0 lg:flex-grow">
+          <div className="relative mt-16 h-[320px] lg:h-[600px] sm:mt-24 lg:mt-0 lg:ml-16 sm:ml-0 lg:flex-shrink-0 lg:flex-grow">
             <Image
               className=""
               src={"/iphone_hero.png"}
@@ -188,7 +188,7 @@ const Home: NextPage = () => {
               // height={622}
               layout="fill"
               objectFit="scale-down"
-              objectPosition="center" 
+              objectPosition="center"
               alt="screenshot"
             />
           </div>
@@ -199,9 +199,65 @@ const Home: NextPage = () => {
         >
           <TopNfts />
         </div>
+        <div className="flex flex-col items-center mx-auto max-w-7xl px-6 pb-0 sm:pb-10 lg:gap-x-10 lg:px-8">
+          <h2 className="self-start mb-14">About</h2>
+          <div className="flex flex-col items-center sm:flex-row mb-14">
+            <div className=" mb-4 sm:mr-8 sm:mb-0 lg:mr-16">
+              <Image
+                src="/p1.png"
+                width={303}
+                height={164}
+                alt="juicebox projects"
+              />
+            </div>
+            <div className="w-[340px] sm:ml-8 lg:ml-16">
+              <h3>Every Juicebox project is an NFT</h3>
+              <div>
+                Whoever owns the NFT controls the project. They can set the
+                funding cycles and configure the project’s metadata.
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col items-center sm:flex-row mb-14">
+            <div className="w-[340px] sm:mr-8 lg:mr-16 order-last sm:order-first">
+              <h3>Project owners can set the NFT’s metadata</h3>
+              <div>
+                Projects get onchain SVG metadata by default. Project owners can
+                set custom colors, upload static metadata like an image or GIF,
+                or use their own metadata contract.
+              </div>
+            </div>
+            <div className=" mb-4 sm:ml-8 lg:ml-16 sm:mb-0">
+              <Image
+                src="/p2.png"
+                width={328}
+                height={148}
+                alt="juicebox projects"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col items-center sm:flex-row mb-14 ">
+            <div className="mb-4 sm:mb-0 sm:mr-8 lg:mr-16">
+              <Image
+                src="/p3.png"
+                width={303}
+                height={164}
+                alt="juicebox projects"
+              />
+            </div>
+            <div className="w-[340px] sm:ml-8 lg:ml-20">
+              <h3>Juicebox Cards are NFT Editions</h3>
+              <div>
+                Juicebox Cards inherit their corresponding project’s metadata.
+                Keep track of your favorite projects from your wallet. Projects
+                can update their metadata at any time!
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <footer>
-        <div className="flex flex-col items-center justify-center py-12 bg-gray-50 sm:flex-row">
+        <div className="flex flex-col items-center justify-center py-12 bg-gray-100 sm:flex-row">
           <div className="sm:px-6">
             <a href="https://github.com/nnnnicholas/juicebox-project-cards">
               Contract Github
