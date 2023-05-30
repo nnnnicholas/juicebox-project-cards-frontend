@@ -249,8 +249,7 @@ const Home: NextPage = () => {
               <h3>Juicebox Cards are NFT Editions</h3>
               <div>
                 Juicebox Cards inherit their corresponding project’s metadata.
-                Keep track of your favorite projects from your wallet. Projects
-                can update their metadata at any time!
+                Keep track of your favorite projects inside your wallet. When projects update their metadata, all Juicebox Cards update too.
               </div>
             </div>
           </div>
