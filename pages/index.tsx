@@ -213,8 +213,7 @@ const Home: NextPage = () => {
             <div className="w-[340px] sm:ml-8 lg:ml-16">
               <h3>Every Juicebox project is an NFT</h3>
               <div>
-                Whoever owns the NFT controls the project. They can set the
-                funding cycles and configure the project’s metadata.
+                Whoever owns the NFT controls the project. They can set cycles and configure the project’s metadata.
               </div>
             </div>
           </div>
@@ -268,7 +267,16 @@ const Home: NextPage = () => {
             </a>
           </div>
           <div className="sm:px-6">
-            <a href="https://juicebox.money/v2/p/465">Juicebox Project</a>
+            <a href="https://docs.juicebox.money/dev/extensions/juice-token-resolver/tokenuriresolver/">Docs</a>
+          </div>
+          <div className="sm:px-6">
+            <a href="https://juicebox.money/v2/p/465">Metadata Treasury</a>
+          </div>
+          <div className="sm:px-6">
+            <a href="https://twitter.com/intent/tweet?text=@nnnnicholas%20jb%20cards%20bug%20report:">Report Bug</a>
+          </div>
+          <div className="sm:px-6">
+            <a href="https://discord.gg/juicebox">Discord</a>
           </div>
         </div>
       </footer>
