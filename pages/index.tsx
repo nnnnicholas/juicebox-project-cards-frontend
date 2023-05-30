@@ -33,7 +33,7 @@ const Home: NextPage = () => {
   const navigation: NavigationItem[] = [
     { name: "Mint", href: "#mint" },
     { name: "Trending", href: "#trending" },
-    { name: "About", href: "#about" },
+    { name: "How Cards Work", href: "#how" },
     // { name: "Docs", href: "#docs" },
     { name: treasuryText, href: "https://juicebox.money/v2/p/465" },
   ];
@@ -199,8 +199,8 @@ const Home: NextPage = () => {
         >
           <TopNfts />
         </div>
-        <div id="about" className="flex flex-col items-center mx-auto max-w-7xl px-6 pb-0 sm:pb-10 lg:gap-x-10 lg:px-8">
-          <h2 className="self-start mb-14">About</h2>
+        <div id="how" className="flex flex-col items-center mx-auto max-w-7xl px-6 pb-0 sm:pb-10 lg:gap-x-10 lg:px-8">
+          <h2 className="self-start mb-14">How Cards Work</h2>
           <div className="flex flex-col items-center sm:flex-row mb-14">
             <div className=" mb-4 sm:mr-8 sm:mb-0 lg:mr-16">
               <Image
@@ -240,8 +240,8 @@ const Home: NextPage = () => {
             <div className="mb-4 sm:mb-0 sm:mr-8 lg:mr-16">
               <Image
                 src="/p3.png"
-                width={303}
-                height={164}
+                width={208}
+                height={153}
                 alt="juicebox projects"
               />
             </div>

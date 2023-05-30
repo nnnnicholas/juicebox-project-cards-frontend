@@ -24,7 +24,7 @@ const TopNftsComponent: FC = () => {
 
   return (
     <div className="grow">
-      <h1>Most popular</h1>
+      <h1>Trending Cards</h1>
       <p className="text-gray-500 mt-2">
         The top three most minted Juicebox Cards. See the full collection on{" "}
         <a
