@@ -34,14 +34,14 @@ const Home: NextPage = () => {
     { name: "Mint", href: "#mint" },
     { name: "Trending", href: "#trending" },
     { name: "How Cards Work", href: "#how" },
-    // { name: "Docs", href: "#docs" },
+    { name: "Resources", href: "#resources" },
     { name: treasuryText, href: "https://juicebox.money/v2/p/465" },
   ];
 
   return (
     <div className="bg-white">
       <Head>
-        <title className="pt-20">Juicebox Cards</title>
+        <title>Juicebox Cards</title>
         <meta
           content="Keep track of your favorite Juicebox Projects right inside your wallet."
           name="description"
@@ -81,7 +81,7 @@ const Home: NextPage = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="text-sm font-semibold leading-6 text-gray-800"
               >
                 {item.name}
               </a>
@@ -175,7 +175,7 @@ const Home: NextPage = () => {
             <h1 className="mt-30 max-w text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Juicebox Cards
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-6 text-lg text-gray-600">
               Track your favorite Juicebox Projects inside your wallet.
             </p>
             <MintModule className="flex flex-col grow items-center mt-6 lg:mt-20 sm:items-stretch" />
@@ -199,7 +199,10 @@ const Home: NextPage = () => {
         >
           <TopNfts />
         </div>
-        <div id="how" className="flex flex-col items-center mx-auto max-w-7xl px-6 pb-0 sm:pb-10 lg:gap-x-10 lg:px-8">
+        <div
+          id="how"
+          className="flex flex-col items-center mx-auto max-w-7xl px-6 pb-0 sm:pb-10 lg:gap-x-10 lg:px-8"
+        >
           <h2 className="self-start mb-14">How Cards Work</h2>
           <div className="flex flex-col items-center sm:flex-row mb-14">
             <div className=" mb-4 sm:mr-8 sm:mb-0 lg:mr-16">
@@ -213,7 +216,8 @@ const Home: NextPage = () => {
             <div className="w-[340px] sm:ml-8 lg:ml-16">
               <h3>Every Juicebox project is an NFT</h3>
               <div>
-                Whoever owns the NFT controls the project. They can set cycles and configure the project’s metadata.
+                Whoever owns the NFT controls the project. They can set cycles
+                and configure the project’s metadata.
               </div>
             </div>
           </div>
@@ -248,7 +252,41 @@ const Home: NextPage = () => {
               <h3>Juicebox Cards are NFT Editions</h3>
               <div>
                 Juicebox Cards inherit their corresponding project’s metadata.
-                Keep track of your favorite projects inside your wallet. When projects update their metadata, all Juicebox Cards update too.
+                Keep track of your favorite projects inside your wallet. When
+                projects update their metadata, all Juicebox Cards update too.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="resources"
+          className="mx-auto max-w-7xl px-6 pb-12 pt-10 sm:pt-32 lg:gap-x-10 lg:px-8 lg:pt-30 lg:pb-15"
+        >
+          <h2 className="pb-4">Resources</h2>
+          <div className="flex justify-between pb-12">
+            <div className="w-[45%]">
+              <h4 className="pb-2">Customize your project&apos;s metadata</h4>
+              <div className="text-xl">
+                To change your project&apos;s NFT theme colors, visit your
+                project&apos;s{" "}
+                <a className="underline" href="https://juicebox.money">
+                  Juicebox.Money
+                </a>{" "}
+                settings page, under the &quot;Project NFT theme&quot; tab.
+              </div>
+            </div>
+            <div className="w-[45%]">
+              <h4 className="pb-2">Create your own metadata contract</h4>
+              <div className="text-xl">
+                Consult the{" "}
+                <a
+                  className="underline"
+                  href="https://docs.juicebox.money/dev/extensions/juice-token-resolver/"
+                >
+                  NFT Resolver Docs
+                </a>{" "}
+                which include boilerplate code to get you started building your
+                own metadata contract.
               </div>
             </div>
           </div>
@@ -272,13 +310,17 @@ const Home: NextPage = () => {
             </a>
           </div>
           <div className="sm:px-6">
-            <a href="https://docs.juicebox.money/dev/extensions/juice-token-resolver/tokenuriresolver/">Docs</a>
+            <a href="https://docs.juicebox.money/dev/extensions/juice-token-resolver/tokenuriresolver/">
+              Docs
+            </a>
           </div>
           <div className="sm:px-6">
             <a href="https://juicebox.money/v2/p/465">Metadata Treasury</a>
           </div>
           <div className="sm:px-6">
-            <a href="https://twitter.com/intent/tweet?text=@nnnnicholas%20jb%20cards%20bug%20report:">Report Bug</a>
+            <a href="https://twitter.com/intent/tweet?text=@nnnnicholas%20jb%20cards%20bug%20report:">
+              Report Bug
+            </a>
           </div>
           <div className="sm:px-6">
             <a href="https://discord.gg/juicebox">Discord</a>
