@@ -139,7 +139,7 @@ const Home: NextPage = () => {
         </Dialog>
       </header>
 
-      <div className="relative isolate pt-14">
+      <div className="relative isolate pt-24">
         {/* <svg
           className="absolute inset-0 -z-10 h-full w-[120%] left-[-10%] right-[-10%] stroke-gray-200"
           aria-hidden="true"
@@ -170,7 +170,7 @@ const Home: NextPage = () => {
           />
         </svg> */}
 
-        <div className="mx-auto max-w-7xl px-6 pb-24 pt-20 sm:pt-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:pt-40 lg:pb-20">
+        <div className="mx-auto lg:flex lg:items-center max-w-7xl px-6 pb-12 pt-10 sm:pt-32 lg:gap-x-10 lg:px-8 lg:pt-30 lg:pb-15">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto self-start">
             <h1 className="mt-30 max-w text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Juicebox Cards
@@ -180,12 +180,15 @@ const Home: NextPage = () => {
             </p>
             <MintModule className="flex flex-col grow items-center mt-6 lg:mt-20 sm:items-stretch" />
           </div>
-          <div className="flex justify-center mt-16 sm:mt-24 lg:mt-0 lg:ml-20 sm:ml-0 lg:flex-shrink-0 lg:flex-grow">
+          <div className="relative mt-16 h-[320px] lg:h-[600px] sm:mt-24 lg:mt-0 lg:ml-20 sm:ml-0 lg:flex-shrink-0 lg:flex-grow">
             <Image
               className=""
               src={"/iphone_hero.png"}
-              width={318}
-              height={622}
+              // width={318}
+              // height={622}
+              layout="fill"
+              objectFit="scale-down"
+              objectPosition="center" 
               alt="screenshot"
             />
           </div>

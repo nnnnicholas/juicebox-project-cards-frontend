@@ -26,9 +26,19 @@ const TopNftsComponent: FC = () => {
     <div className="grow">
       <h1>Most popular</h1>
       <p className="text-gray-500 mt-2">
-        The top three most minted Juicebox Cards.
+        The top three most minted Juicebox Cards. See the full collection on{" "}
+        <a
+          className="underline"
+          href="https://opensea.io/collection/juicebox-project-cards"
+        >
+          OpenSea
+        </a>
+        .
       </p>
-      <div className="flex flex-col pt-8 justify-center items-center lg:flex-row lg:justify-space-between lg:items-stretch lg:place-content-between mt-4">
+      <div
+        id="cardContainer"
+        className="flex flex-col pt-8  items-center lg:items-stretch lg:flex-row lg:justify-space-between lg:place-content-between mt-4"
+      >
         {topNfts.map(({ tokenId, mintCount }, index) => {
           const project: Project = {
             project_id: tokenId,
@@ -37,14 +47,19 @@ const TopNftsComponent: FC = () => {
           return (
             <div
               key={index}
-              className="border-solid border-2 bg-gray-100 rounded-lg border-grey-600 w-78 max-w-[350px] mb-8 mx-2 p-3 flex flex-col lg:my-0 lg:justify-between content-center"
+              className="flex flex-col justify-end min-w-[300px] max-w-[340px] mb-8 mx-2 my-0 border-solid border-2 bg-gray-100 rounded-lg border-grey-600"
             >
-              <div className="flex w-full place-content-between items-baseline">
-                <h3>{ranks[index]}</h3>
-                <div>{mintCount} minted</div>
+              <Preview selectedProject={project} className="grow w-full flex items-center pb-4" />
+              <div className=" flex flex-col ">
+                <div className="flex w-full place-content-between items-baseline">
+                  <h3 className="pl-4">{ranks[index]}</h3>
+                  <div className="pr-4">{mintCount} minted</div>
+                </div>
+                <MintButton
+                  selectedProject={project}
+                  className="mt-4 mb-2 mx-2"
+                />
               </div>
-              <Preview selectedProject={project} className="py-4 w-full" />
-              <MintButton selectedProject={project} className="" />
             </div>
           );
         })}
