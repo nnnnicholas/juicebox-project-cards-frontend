@@ -257,6 +257,11 @@ const Home: NextPage = () => {
       <footer>
         <div className="flex flex-col items-center justify-center py-12 bg-gray-100 sm:flex-row">
           <div className="sm:px-6">
+            <a href="https://etherscan.io/address/0xe601eae33a0109147a6f3cd5f81997233d42fedd">
+              Etherscan
+            </a>
+          </div>
+          <div className="sm:px-6">
             <a href="https://github.com/nnnnicholas/juicebox-project-cards">
               Contract Github
             </a>
