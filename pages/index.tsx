@@ -223,7 +223,7 @@ const Home: NextPage = () => {
           </div>
           <div className="flex flex-col items-center sm:flex-row mb-14">
             <div className="w-[340px] sm:mr-8 lg:mr-16 order-last sm:order-first">
-              <h3>Project owners can set the NFT’s metadata</h3>
+              <h3>Project owners can set their NFT’s metadata</h3>
               <div>
                 Projects get onchain SVG metadata by default. Project owners can
                 set custom colors, upload static metadata like an image or GIF,
@@ -263,8 +263,8 @@ const Home: NextPage = () => {
           className="mx-auto max-w-7xl px-6 pb-12 pt-10 sm:pt-32 lg:gap-x-10 lg:px-8 lg:pt-30 lg:pb-15"
         >
           <h2 className="pb-4">Resources</h2>
-          <div className="flex justify-between pb-12">
-            <div className="w-[45%]">
+          <div className="flex flex-col items-center pb-12 pt-4 lg:flex-row lg:justify-between">
+            <div className="pt-4 pb-10 lg:pt-0 lg:pb-0 lg:w-[45%]">
               <h4 className="pb-2">Customize your project&apos;s metadata</h4>
               <div className="text-xl">
                 To change your project&apos;s NFT theme colors, visit your
@@ -275,7 +275,7 @@ const Home: NextPage = () => {
                 settings page, under the &quot;Project NFT theme&quot; tab.
               </div>
             </div>
-            <div className="w-[45%]">
+            <div className="lg:w-[45%]">
               <h4 className="pb-2">Create your own metadata contract</h4>
               <div className="text-xl">
                 Consult the{" "}
