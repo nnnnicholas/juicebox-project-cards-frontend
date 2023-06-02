@@ -70,9 +70,9 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
       if (json.image && json.image.startsWith(SVG_BASE64_PREFIX)) {
         const imageBase64Encoded = json.image.replace(SVG_BASE64_PREFIX, "");
         const svgText = base64Decode(imageBase64Encoded);
-
+        let svgWithStyle = `<style>body{margin:0;}svg{width:100%;height:100%;}</style>${svgText}`;
         setImageBlob(null);
-        setSvgContent(svgText);
+        setSvgContent(svgWithStyle);
       } else if (json.image) {
         fetchMetadataAndImage(json.image);
       }
@@ -99,6 +99,8 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
           title="SVG Preview"
           srcDoc={svgContent}
           style={{ border: "none", width: "100%", height: "auto" }}
+          scrolling="no" 
+          
         />
       )}
     </div>
