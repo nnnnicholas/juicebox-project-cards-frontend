@@ -70,10 +70,9 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
         img.src = `data:image/svg+xml;base64,${imageBase64Encoded}`;
 
         img.onload = function () {
-          const pixelRatio = window.devicePixelRatio || 1;
           const canvas = document.createElement("canvas");
-          canvas.width = img.width * pixelRatio; // Multiply by pixel ratio
-          canvas.height = img.height * pixelRatio; // Multiply by pixel ratio
+          canvas.width = img.naturalWidth; // Use intrinsic width
+          canvas.height = img.naturalHeight; // Use intrinsic height
 
           const ctx = canvas.getContext("2d");
           if (!ctx) {
@@ -81,8 +80,8 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
             return;
           }
 
-          ctx.scale(pixelRatio, pixelRatio); // Scale everything drawn on canvas
-          ctx.drawImage(img, 0, 0, img.width, img.height); // Draw with original dimensions
+          // Draw with original dimensions
+          ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
 
           const pngUrl = canvas.toDataURL();
           setImageBlob(pngUrl);
