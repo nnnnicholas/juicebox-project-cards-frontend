@@ -34,6 +34,7 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
   });
 
   const [svgContent, setSvgContent] = useState<string | null>(null);
+  const [imageBlob, setImageBlob] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMetadataAndImage = async (uri: string) => {
@@ -42,13 +43,24 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
         const metadata = await metadataResponse.json();
         const imageUri = metadata.image;
         const imageResponse = await fetch(gatewayUri(imageUri));
-        const svgText = await imageResponse.text();
+        // const svgText = await imageResponse.text();
+        const imageBlob = await imageResponse.blob();
+        const imageUrl = URL.createObjectURL(imageBlob);
 
-        setSvgContent(svgText);
+        // setSvgContent(svgText);
+        setSvgContent(null);
+        setImageBlob(imageUrl);
       } catch (error) {
         console.error("Error fetching metadata and image:", error);
       }
     };
+
+    if (
+      tokenUri &&
+      (tokenUri.startsWith("http") || tokenUri.startsWith("ipfs://"))
+    ) {
+      fetchMetadataAndImage(tokenUri);
+    }
 
     if (tokenUri && tokenUri.startsWith(BASE64_PREFIX)) {
       const base64Encoded = tokenUri.replace(BASE64_PREFIX, "");
@@ -59,6 +71,7 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
         const imageBase64Encoded = json.image.replace(SVG_BASE64_PREFIX, "");
         const svgText = base64Decode(imageBase64Encoded);
 
+        setImageBlob(null);
         setSvgContent(svgText);
       } else if (json.image) {
         fetchMetadataAndImage(json.image);
@@ -80,6 +93,7 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
 
   return (
     <div className={`${className || ""}`}>
+      {imageBlob && <img src={imageBlob} alt="Preview" />}
       {svgContent && (
         <iframe
           title="SVG Preview"
