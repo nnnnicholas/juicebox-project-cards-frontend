@@ -70,22 +70,23 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
         img.src = `data:image/svg+xml;base64,${imageBase64Encoded}`;
 
         img.onload = function () {
+          const pixelRatio = window.devicePixelRatio || 1;
           const canvas = document.createElement("canvas");
-          canvas.width = img.naturalWidth; // Use intrinsic width
-          canvas.height = img.naturalHeight; // Use intrinsic height
-
+          canvas.width = img.naturalWidth * pixelRatio; // Multiply by pixel ratio
+          canvas.height = img.naturalHeight * pixelRatio; // Multiply by pixel ratio
+        
           const ctx = canvas.getContext("2d");
           if (!ctx) {
             console.error("Unable to get 2D context");
             return;
           }
-
-          // Draw with original dimensions
-          ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
-
+        
+          ctx.scale(pixelRatio, pixelRatio); // Scale everything drawn on canvas by the pixel ratio
+          ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight); // Draw with original dimensions
+        
           const pngUrl = canvas.toDataURL();
           setImageBlob(pngUrl);
-        };
+        };        
       } else if (json.image) {
         fetchMetadataAndImage(json.image);
       }
@@ -106,9 +107,9 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
 
   return (
     <div className={`${className || ""}`}>
-      {imageBlob && <img src={imageBlob} alt="Preview" />}
+      {imageBlob && <img style={{width: '100%', height: 'auto'}} src={imageBlob} alt="Preview" />}
     </div>
-  );
+  );  
 };
 
 export default Preview;
