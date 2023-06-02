@@ -46,6 +46,7 @@ const Home: NextPage = () => {
           content="Keep track of your favorite Juicebox Projects right inside your wallet."
           name="description"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <link href="/favicon.ico" rel="icon" />
       </Head>
 
