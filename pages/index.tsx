@@ -34,7 +34,7 @@ const Home: NextPage = () => {
     { name: "Mint", href: "#mint" },
     { name: "Trending", href: "#trending" },
     { name: "How Cards Work", href: "#how" },
-    { name: "Resources", href: "#resources" },
+    { name: "Dev Resources", href: "#resources" },
     { name: treasuryText, href: "https://juicebox.money/v2/p/465" },
   ];
 
@@ -263,7 +263,7 @@ const Home: NextPage = () => {
           id="resources"
           className="mx-auto max-w-7xl px-6 pb-12 pt-10 sm:pt-32 lg:gap-x-10 lg:px-8 lg:pt-30 lg:pb-15"
         >
-          <h2 className="pb-4">Resources</h2>
+          <h2 className="pb-4">Developer Resources</h2>
           <div className="flex flex-col items-center pb-12 pt-4 lg:flex-row lg:justify-between">
             <div className="pt-4 pb-10 lg:pt-0 lg:pb-0 lg:w-[45%]">
               <h4 className="pb-2">Customize your project&apos;s metadata</h4>
