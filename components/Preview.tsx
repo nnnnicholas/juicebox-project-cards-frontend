@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useMemo } from "react";
+import { FC, useState, useEffect } from "react";
 import { Project } from "../interfaces/Project";
 import { useJbProjectsTokenUri } from "../resources/generated";
 
@@ -33,7 +33,7 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
     args: tokenId ? [tokenId] : [BigInt(1)],
   });
 
-  const [imageBlob, setImageBlob] = useState<string | null>(null);
+  const [svgContent, setSvgContent] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMetadataAndImage = async (uri: string) => {
@@ -42,21 +42,13 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
         const metadata = await metadataResponse.json();
         const imageUri = metadata.image;
         const imageResponse = await fetch(gatewayUri(imageUri));
-        const imageBlob = await imageResponse.blob();
-        const imageUrl = URL.createObjectURL(imageBlob);
+        const svgText = await imageResponse.text();
 
-        setImageBlob(imageUrl);
+        setSvgContent(svgText);
       } catch (error) {
         console.error("Error fetching metadata and image:", error);
       }
     };
-
-    if (
-      tokenUri &&
-      (tokenUri.startsWith("http") || tokenUri.startsWith("ipfs://"))
-    ) {
-      fetchMetadataAndImage(tokenUri);
-    }
 
     if (tokenUri && tokenUri.startsWith(BASE64_PREFIX)) {
       const base64Encoded = tokenUri.replace(BASE64_PREFIX, "");
@@ -65,28 +57,9 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
 
       if (json.image && json.image.startsWith(SVG_BASE64_PREFIX)) {
         const imageBase64Encoded = json.image.replace(SVG_BASE64_PREFIX, "");
+        const svgText = base64Decode(imageBase64Encoded);
 
-        const img = new Image();
-        img.src = `data:image/svg+xml;base64,${imageBase64Encoded}`;
-
-        img.onload = function () {
-          const pixelRatio = window.devicePixelRatio || 1;
-          const canvas = document.createElement("canvas");
-          canvas.width = img.naturalWidth * pixelRatio; // Multiply by pixel ratio
-          canvas.height = img.naturalHeight * pixelRatio; // Multiply by pixel ratio
-        
-          const ctx = canvas.getContext("2d");
-          if (!ctx) {
-            console.error("Unable to get 2D context");
-            return;
-          }
-        
-          ctx.scale(pixelRatio, pixelRatio); // Scale everything drawn on canvas by the pixel ratio
-          ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight); // Draw with original dimensions
-        
-          const pngUrl = canvas.toDataURL();
-          setImageBlob(pngUrl);
-        };        
+        setSvgContent(svgText);
       } else if (json.image) {
         fetchMetadataAndImage(json.image);
       }
@@ -107,9 +80,15 @@ const Preview: FC<PreviewProps> = ({ selectedProject, className }) => {
 
   return (
     <div className={`${className || ""}`}>
-      {imageBlob && <img style={{width: '100%', height: 'auto'}} src={imageBlob} alt="Preview" />}
+      {svgContent && (
+        <iframe
+          title="SVG Preview"
+          srcDoc={svgContent}
+          style={{ border: "none", width: "100%", height: "auto" }}
+        />
+      )}
     </div>
-  );  
+  );
 };
 
 export default Preview;
