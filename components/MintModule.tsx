@@ -24,7 +24,7 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
     useState<Project>(initialProject);
 
   const { address, isConnecting, isDisconnected } = useAccount();
-  
+
   // This hack solves type complaint in search params. Iffy
   const setSelectedProjectWrapper = (project: Project | null) => {
     project ? setSelectedProject(project) : null;
@@ -41,21 +41,23 @@ const MintModule: FC<MintModuleProps> = ({ className = "" }) => {
             setSelectedProject={setSelectedProjectWrapper}
           />
           {isDisconnected ? (
-            <div className="pt-2.5"><ConnectButton accountStatus="address" /></div>
+            <div className="pt-2.5">
+              <ConnectButton accountStatus="address" />
+            </div>
           ) : (
-            <MintButton selectedProject={selectedProject} />
+            <MintButton selectedProject={selectedProject} address={address} />
           )}
-          <div className="mt-2 text-gray-400 text-xs">
-            Proceeds go to the{" "}
+          <div className="mt-2 max-w-sm text-gray-400 text-xs">
+            0.01 ETH goes to the project and 0.005 ETH goes to the {" "}
             <a href="https://juicebox.money/v2/p/465">
-              <span className="italic underline">metadata</span>
+              <span className="underline">Metadata</span>
             </a>{" "}
-            project.
+            project to support future metadata development.
           </div>
         </div>
         <Preview
           selectedProject={selectedProject}
-          className="mt-5 max-w-[300px] order-1 sm:order-2"
+          className="grow mt-5 max-w-[300px] order-1 sm:order-2"
         />
       </div>
     </div>
