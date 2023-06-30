@@ -8,7 +8,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import MintModule from "../components/MintModule";
-import { useContractRead } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
 import dynamic from "next/dynamic";
 import { useTreasuryBalance } from "../hooks/useTreasuryBalance";
 import TopNfts from "../components/TopNfts";
@@ -21,6 +21,8 @@ interface NavigationItem {
 const Home: NextPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { treasuryBalance, isError, isLoading } = useTreasuryBalance();
+
+  const { address } = useAccount();
 
   const [treasuryText, setTreasuryText] = useState("Treasury");
   useEffect(() => {
@@ -198,7 +200,7 @@ const Home: NextPage = () => {
           id="trending"
           className="mx-auto max-w-7xl px-6 pb-24 sm:pb-32 lg:flex lg:justify-center lg:gap-x-10 lg:px-8"
         >
-          <TopNfts />
+          <TopNfts address={address} />
         </div>
         <div
           id="how"

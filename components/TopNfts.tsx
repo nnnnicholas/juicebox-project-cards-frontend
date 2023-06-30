@@ -4,7 +4,11 @@ import Preview from "./Preview";
 import { Project } from "../interfaces/Project";
 import MintButton from "./MintButton";
 
-const TopNftsComponent: FC = () => {
+interface TopNftsComponentProps {
+  address?: `0x${string}`;
+}
+
+const TopNftsComponent: FC<TopNftsComponentProps> = ({ address }) => {
   const { topNfts, error } = useTopNfts();
   const ranks = ["🏆 1st Place", "🥈 2nd Place", "🥉 3rd Place"];
 
@@ -49,7 +53,10 @@ const TopNftsComponent: FC = () => {
               key={index}
               className="flex flex-col justify-end min-w-[300px] max-w-[340px] mb-8 mx-2 my-0 border-solid border-2 bg-gray-100 rounded-lg border-grey-600"
             >
-              <Preview selectedProject={project} className="grow w-full flex items-center pb-4" />
+              <Preview
+                selectedProject={project}
+                className="grow w-full flex items-center pb-4"
+              />
               <div className=" flex flex-col ">
                 <div className="flex w-full place-content-between items-baseline">
                   <h3 className="pl-4">{ranks[index]}</h3>
@@ -57,6 +64,7 @@ const TopNftsComponent: FC = () => {
                 </div>
                 <MintButton
                   selectedProject={project}
+                  address={address}
                   className="mt-4 mb-2 mx-2"
                 />
               </div>
