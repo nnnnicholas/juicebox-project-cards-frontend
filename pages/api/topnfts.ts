@@ -15,7 +15,7 @@ const options = {
 };
 
 // Define the contract address constant
-const JUICEBOX_PROJECT_CARDS_ADDRESS = "0xe601Eae33A0109147a6F3CD5F81997233d42FEDD";
+const JUICEBOX_PROJECT_CARDS_ADDRESS = "0x78a975a504404e1bf94ff3982f048191fabe4f2c";
 
 // Cache duration in milliseconds
 const CACHE_DURATION = 1000 * 120; // 2 minutes

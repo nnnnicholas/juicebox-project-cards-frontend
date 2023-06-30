@@ -28,7 +28,7 @@ export default defineConfig({
         // {
         //   name: 'JBProjectCards',
         //   address: {
-        //     [mainnet.id]: '0xe601Eae33A0109147a6F3CD5F81997233d42FEDD',
+        //     [mainnet.id]: '0x78a975a504404e1bf94ff3982f048191fabe4f2c',
         //   }
         // }
       ],
