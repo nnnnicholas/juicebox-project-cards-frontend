@@ -28,7 +28,7 @@ const MintButton: FC<MintProps> = ({
     : undefined;
   const JBPROJECTCARDS_ADDRESS = "0x78a975a504404e1bf94ff3982f048191fabe4f2c";
 
-  const args: [bigint, string, string] =
+  const args: [bigint, `0x${string}`, `0x${string}`] =
     projectId && address
       ? [projectId, address, address]
       : [
