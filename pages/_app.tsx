@@ -9,6 +9,7 @@ import type { AppProps } from "next/app";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { arbitrum, goerli, mainnet, optimism, polygon } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -18,7 +19,14 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     // arbitrum,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [goerli] : []),
   ],
-  [publicProvider()]
+  [
+    jsonRpcProvider({
+      rpc: (chain) => ({
+        http: `https://rpc.ankr.com/eth`,
+      }),
+    }),
+    publicProvider(),
+  ]
 );
 
 const { connectors } = getDefaultWallets({
@@ -42,7 +50,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         modalSize="compact"
         theme={lightTheme({
           accentColor: "#FF9215",
-          borderRadius: 'small',
+          borderRadius: "small",
           // accentColorForeground: "white",
         })}
       >
