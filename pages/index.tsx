@@ -37,7 +37,7 @@ const Home: NextPage = () => {
     { name: "Trending", href: "#trending" },
     { name: "How Cards Work", href: "#how" },
     { name: "Dev Resources", href: "#resources" },
-    { name: "Opensea", href: "https://opensea.io/collection/juicebox-cards" },
+    { name: "OpenSea", href: "https://opensea.io/collection/juicebox-cards" },
     { name: treasuryText, href: "https://juicebox.money/v2/p/465" },
   ];
 
@@ -302,8 +302,16 @@ const Home: NextPage = () => {
       <footer>
         <div className="flex flex-col items-center justify-center py-12 bg-gray-100 sm:flex-row">
           <div className="sm:px-6">
+            <a href="https://opensea.io/collection/juicebox-cards">OpenSea</a>
+          </div>
+          <div className="sm:px-6">
             <a href="https://etherscan.io/address/0x78a975a504404e1bf94ff3982f048191fabe4f2c">
               Etherscan
+            </a>
+          </div>
+          <div className="sm:px-6">
+            <a href="https://docs.juicebox.money/dev/extensions/juice-token-resolver/tokenuriresolver/">
+              Docs
             </a>
           </div>
           <div className="sm:px-6">
@@ -314,11 +322,6 @@ const Home: NextPage = () => {
           <div className="sm:px-6">
             <a href="https://github.com/nnnnicholas/juicebox-project-cards-frontend">
               Frontend Github
-            </a>
-          </div>
-          <div className="sm:px-6">
-            <a href="https://docs.juicebox.money/dev/extensions/juice-token-resolver/tokenuriresolver/">
-              Docs
             </a>
           </div>
           <div className="sm:px-6">
