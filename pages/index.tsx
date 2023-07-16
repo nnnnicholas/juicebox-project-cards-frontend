@@ -325,7 +325,7 @@ const Home: NextPage = () => {
             </a>
           </div>
           <div className="sm:px-6">
-            <a href="https://juicebox.money/v2/p/465">Metadata Treasury</a>
+            <a href="https://juicebox.money/v2/p/465">Treasury</a>
           </div>
           <div className="sm:px-6">
             <a href="https://twitter.com/intent/tweet?text=@nnnnicholas%20jb%20cards%20bug%20report:">
